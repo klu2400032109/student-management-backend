@@ -23,10 +23,25 @@ public class ProjectController {
     }
 
     @PostMapping
-public Project addProject(@RequestBody Project project) {
-    return projectRepository.save(project);
-}
-    
+    public Project addProject(@RequestBody Project project) {
+        return projectRepository.save(project);
+    }
+
+    @PutMapping("/{id}")
+    public Project updateProject(@PathVariable Long id, @RequestBody Project updatedProject) {
+        Project project = projectRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Project not found"));
+
+        project.setTitle(updatedProject.getTitle());
+        project.setDescription(updatedProject.getDescription());
+        project.setTechnologies(updatedProject.getTechnologies());
+        project.setStatus(updatedProject.getStatus());
+        project.setGithubUrl(updatedProject.getGithubUrl());
+        project.setLiveUrl(updatedProject.getLiveUrl());
+
+        return projectRepository.save(project);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteProject(@PathVariable Long id) {
         projectRepository.deleteById(id);
