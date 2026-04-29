@@ -22,6 +22,11 @@ public class ProjectController {
         return projectRepository.findAll();
     }
 
+    @PostMapping
+public Project addProject(@RequestBody Project project) {
+    return projectRepository.save(project);
+}
+    
     @DeleteMapping("/{id}")
     public void deleteProject(@PathVariable Long id) {
         projectRepository.deleteById(id);
