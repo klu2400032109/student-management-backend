@@ -34,10 +34,12 @@ public class ProjectController {
 
         project.setTitle(updatedProject.getTitle());
         project.setDescription(updatedProject.getDescription());
-        project.setTechnologies(updatedProject.getTechnologies());
+        project.setTechStack(updatedProject.getTechStack());
         project.setStatus(updatedProject.getStatus());
         project.setGithubUrl(updatedProject.getGithubUrl());
-        project.setLiveUrl(updatedProject.getLiveUrl());
+        project.setDemoUrl(updatedProject.getDemoUrl());
+        project.setMediaUrl(updatedProject.getMediaUrl());
+        project.setStudentId(updatedProject.getStudentId());
 
         return projectRepository.save(project);
     }
